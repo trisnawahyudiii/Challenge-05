@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
             models.Cars.belongsTo(models.Car_Types, {
                 foreignKey: 'car_type',
-                as: 'car_type',
+                as: 'type',
                 onDelete: 'CASCADE',
             });
         }
