@@ -5,8 +5,96 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
+
+        <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+        <!-- css -->
+        <link rel="stylesheet" href="./css/styles.css" />
+
+        <!-- bootsrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     </head>
-    <body>
-        <h1>ini dashboard</h1>
+    <body class="d-flex flex-row">
+        <!-- sidebar -->
+        <section class="left-sidebar d-flex">
+            <div class="blue-bar d-flex flex-column align-items-center text-center">
+                <div class="blue-bar-items d-flex flex-column align-items-center px-2 pt-3 pb-2 w-100">
+                    <img src="./images/small_logo.png" alt="small_company_icon" style="width: 34px" />
+                </div>
+                <div class="blue-bar-items d-flex flex-column align-items-center p-2 w-100">
+                    <img src="./images/Home.png" alt="dashboard_icon" />
+                    <span>Dashboard</span>
+                </div>
+                <div class="blue-bar-items d-flex flex-column align-items-center p-2 w-100 item-active">
+                    <img src="./images/truck.png" alt="truck_icon" />
+                    <span>Cars</span>
+                </div>
+            </div>
+        </section>
+        <div class="main-section w-100">
+            <!-- navbar -->
+            <nav class="navbar bg-light p-0 m-0">
+                <div class="container-fluid p-0 d-flex flex-row">
+                    <a class="navbar-brand py-3 px-4 m-0" href="/" style="width: 220px">
+                        <img src="./images/company_logo.png" alt="company_logo" />
+                    </a>
+                    <div class="d-flex flex-row flex-grow-1 align-items-center justify-content-between">
+                        <!-- hamberger -->
+                        <i class="bi bi-list px-3" style="font-size: 24px"></i>
+
+                        <div class="d-flex flex-row align-content-center">
+                            <!-- searchbox -->
+                            <form class="d-flex search-box" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+
+                            <!-- user -->
+                            <div class="btn-group ms-2 user-setting">
+                                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    <img src="./images/company_logo.png" class="rounded-circle" alt="" style="width: 38px; height: 38px; object-fit: cover" />
+                                    Trisna Wahyudi
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-sm-end">
+                                    <li>
+                                        <button class="dropdown-item" type="button">Setting</button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">Logout</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- navbar -->
+            <div class="container p-0 m-0 d-flex">
+                <!-- whitebar -->
+                <div class="white-bar py-3">
+                    <div class="white-bar-item px-4 py-2">
+                        <h6 class="py-1">CARS</h6>
+                    </div>
+                    <div class="white-bar-item px-4 py-2 white-bar-item--active">
+                        <h6 class="py-1">List Cars</h6>
+                    </div>
+                </div>
+                <!-- whitebar -->
+                <div class="card-container">
+                    <% for( let i = 0; i < cars.length; i++ ) { %>
+                    <img src="<%=cars[i].car_image%>" alt="car_image" width="300px" />
+                    <p><%= cars[i].car_name %> / <%= cars[i].type.type_name %></p>
+                    <p>rent cost : <%= cars[i].rent_cost %></p>
+                    <p class="align-self-center mb-0">Updated at <%=cars[i].updatedAt;%></p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <!-- end of sidebar  -->
+
+        <!-- bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
     </body>
 </html>
