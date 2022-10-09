@@ -112,6 +112,22 @@ app.get('/:id', (req, res) => {
         });
 });
 
+// filter car by type
+app.post('/search', (req, res) => {
+    if (req.body.search === '' || req.body.search === null) {
+        return res.redirect('/');
+    } else {
+        axios
+            .get('http://localhost:5000/api/v1/search-cars/' + req.body.search)
+            .then((response) => {
+                res.render('index', { cars: response.data, moment: moment });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+});
+
 app.get('/delete-car/:id', async (req, res) => {
     try {
         const id = req.params.id;

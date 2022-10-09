@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('sequelize');
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -53,6 +54,23 @@ app.get('/api/v1/cars/type/:id', async (req, res) => {
             where: { car_type: type_id },
             include: [{ model: Car_Types, as: 'type' }],
         });
+        res.status(200).json(cars);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// search API
+app.get('/api/v1/search-cars/:search', async (req, res) => {
+    try {
+        const lookFor = req.params.search.toLowerCase();
+        const cars = await Cars.findAll({
+            where: {
+                car_name: sequelize.where(sequelize.fn('LOWER', sequelize.col('car_name')), 'LIKE', '%' + lookFor + '%'),
+            },
+            include: [{ model: Car_Types, as: 'type' }],
+        });
+        console.log(cars);
         res.status(200).json(cars);
     } catch (error) {
         res.status(500).json({ error: error.message });
