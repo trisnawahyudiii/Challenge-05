@@ -32,13 +32,10 @@
                 </div>
             </div>
         </section>
-        <div class="main-section w-100">
+        <div class="w-100">
             <!-- navbar -->
-            <nav class="navbar bg-light p-0 m-0">
+            <nav class="navbar p-0 m-0 sticky-top" style="background-color: #fff">
                 <div class="container-fluid p-0 d-flex flex-row">
-                    <a class="navbar-brand py-3 px-4 m-0" href="/" style="width: 220px">
-                        <img src="./images/company_logo.png" alt="company_logo" />
-                    </a>
                     <div class="d-flex flex-row flex-grow-1 align-items-center justify-content-between">
                         <!-- hamberger -->
                         <i class="bi bi-list px-3" style="font-size: 24px"></i>
@@ -70,24 +67,102 @@
                 </div>
             </nav>
             <!-- navbar -->
-            <div class="container p-0 m-0 d-flex">
+            <div class="p-0 m-0 d-flex">
                 <!-- whitebar -->
                 <div class="white-bar py-3">
-                    <div class="white-bar-item px-4 py-2">
-                        <h6 class="py-1">CARS</h6>
+                    <div class="pb-2">
+                        <a class="navbar-brand px-4 mb-4" href="/" style="width: 220px">
+                            <img src="./images/company_logo.png" alt="company_logo" />
+                        </a>
                     </div>
-                    <div class="white-bar-item px-4 py-2 white-bar-item--active">
-                        <h6 class="py-1">List Cars</h6>
+                    <div class="mt-4">
+                        <div class="white-bar-item px-4 py-2">
+                            <h6 class="py-1">CARS</h6>
+                        </div>
+                        <div class="white-bar-item px-4 py-2 white-bar-item--active">
+                            <h6 class="py-1">List Cars</h6>
+                        </div>
                     </div>
                 </div>
                 <!-- whitebar -->
-                <div class="card-container">
-                    <% for( let i = 0; i < cars.length; i++ ) { %>
-                    <img src="<%=cars[i].car_image%>" alt="car_image" width="300px" />
-                    <p><%= cars[i].car_name %> / <%= cars[i].type.type_name %></p>
-                    <p>rent cost : <%= cars[i].rent_cost %></p>
-                    <p class="align-self-center mb-0">Updated at <%=cars[i].updatedAt;%></p>
-                    <% } %>
+                <div class="main-container flex-grow-1 m-0 p-4">
+                    <!-- breadcrumb -->
+                    <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="fw-bold text-black text-decoration-none">Cars</a>
+                            </li>
+                            <li class="breadcrumb-item active">List Car</li>
+                        </ol>
+                    </nav>
+                    <!-- page header -->
+                    <div class="pt-2 d-flex justify-content-between">
+                        <h4 class="fw-bold">List Car</h4>
+                        <a href="/create-car">
+                            <button class="btn btn-add-car float-end"><i class="bi bi-plus-lg me-2"></i>Add New Car</button>
+                        </a>
+                    </div>
+                    <!-- filter buttons -->
+                    <div class="py-3 d-flex justify-content-start">
+                        <button class="btn btn-outline-primary btn-filter-size me-3" onclick="location.href='/'" id="filterAll">All</button>
+                        <button class="btn btn-outline-primary btn-filter-size me-3" onclick="location.href='/1'" id="filterSmall">Small</button>
+                        <button class="btn btn-outline-primary btn-filter-size me-3" onclick="location.href='/2'" id="filterMedium">Medium</button>
+                        <button class="btn btn-outline-primary btn-filter-size me-3" onclick="location.href='/3'" id="filterLarge">Large</button>
+                    </div>
+
+                    <script>
+                        const rupiah = (number) => {
+                            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+                        };
+                        const rp = [];
+                    </script>
+                    <!-- car cards -->
+                    <div class="row card-container w-100">
+                        <% for (let i=0; i < cars.length; i++) { %>
+                        <div class="mb-3 col-xxl-3 col-xl-4 col-md-6 col-sm-12 col d-flex justify-content-center">
+                            <div class="card">
+                                <img src="<%= cars[i].car_image %>" class="card-img-top cars-img" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= cars[i].car_name %> / <%= cars[i].type.type_name %></h5>
+                                    <h3 class="card-text" id="rent_cost<%= cars[i].id %>">
+                                        <script>
+                                            document.getElementById('rent_cost<%= cars[i].id %>').innerHTML = rupiah('<%= cars[i].rent_cost%>');
+                                        </script>
+                                        / hari
+                                    </h3>
+                                    <div class="d-flex justify-content-start available-at">
+                                        <i class="bi bi-clock me-3"></i>
+                                        <p class="align-self-center mb-0">Updated at <%=moment(cars[i].updatedAt).format('MMMM Do YYYY, h:mm:ss a');%></p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="d-flex justify-content-between">
+                                                <a href="/delete-car/<%=cars[i].id%>">
+                                                    <button class="btn btn-delete-cars">
+                                                        <i class="bi bi-trash3 me-1"></i>
+                                                        Delete
+                                                    </a>
+                                                </button>
+                                                <!-- <button onclick="confirmDelete('<%= cars[i].id%>')" class="btn btn-delete-cars">
+                                                    <i class="bi bi-trash3 me-1"></i>
+                                                    Delete
+                                                </button> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-edit-cars" onclick="location.href='/update-car/<%=cars[i].id%>'">
+                                                    <i class="bi bi-pencil-square me-1"></i>
+                                                    <a>Edit</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
                 </div>
             </div>
         </div>

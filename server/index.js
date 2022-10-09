@@ -21,7 +21,7 @@ app.post('/api/v1/cars', (req, res) => {
         });
 });
 
-// Read Car
+// Read all Car
 app.get('/api/v1/cars', async (req, res) => {
     try {
         const cars = await Cars.findAll({
@@ -33,9 +33,44 @@ app.get('/api/v1/cars', async (req, res) => {
     }
 });
 
+// Get Car by Id
+app.get('/api/v1/cars/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const cars = await Cars.findByPk(id);
+        console.log(cars);
+        res.status(200).json(cars);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Update Car
+app.put('/api/v1/cars/:id', (req, res) => {
+    const id = req.params.id;
+    const body = req.body;
+
+    Cars.update(body, { where: { id: id } })
+        .then((cars) => {
+            res.status(200).json(cars);
+        })
+        .catch((error) => {
+            res.status(500).json(error);
+        });
+});
 
 // Delete Car
+app.delete('/cars/:id', (req, res) => {
+    const id = req.params.id;
+
+    Cars.destroy({ where: { id: id } })
+        .then((cars) => {
+            res.status(200).json({ data: cars });
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

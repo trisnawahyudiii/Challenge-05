@@ -2,7 +2,7 @@
 
 :root {
     --header-height: 60px;
-    --nav-width: 250px;
+    --nav-width: 294px;
     --color-primary: #0d28a6;
     --white-color: #ffffff;
     --item-active-color: rgba(255, 255, 255, 0.3);
@@ -35,11 +35,15 @@ body {
     background-color: #e5e5e5 !important;
     position: relative;
     margin: var(--header-height) 0 0 0;
+    padding-left: var(--nav-width);
     transition: 0.5s;
     height: 100vh;
 }
 
 .blue-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100vh;
     background-color: var(--color-primary);
 }
@@ -59,9 +63,13 @@ body {
 }
 
 .white-bar {
+    position: fixed;
+    left: 74px;
+    top: 0;
     background-color: var(--white-color);
     width: 220px;
     height: 100vh;
+    /* margin-left: 74px; */
 }
 
 .white-bar-item {
@@ -72,4 +80,157 @@ body {
     background-color: var(--hover-color);
     color: var(--text-primary);
     font-weight: 700;
+}
+
+/* cardCars */
+.card-container .card {
+    width: 351px;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.card-container .card .cars-img {
+    width: 100%;
+    height: 15vw;
+    padding: 16px;
+    object-fit: cover;
+}
+
+.card-container .card .card-body h5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.card-container .card .card-body h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.card-container .card .card-body p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.card-container .card .card-body .available-at {
+    margin-bottom: 16px;
+}
+
+.card-container .card .card-body .available-at .clock-img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.card-container .card .card-body .btn-edit-cars {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 12px;
+    width: 143.5px;
+    height: 48px;
+    background: #5cb85f;
+    color: #ffffff;
+    border-radius: 2px;
+}
+
+.card-container .card .card-body .btn-edit-cars:hover {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 12px;
+    width: 143.5px;
+    height: 48px;
+    background: #5cb85f;
+    color: #ffffff;
+    border-radius: 2px;
+}
+
+.card-container .card .card-body .btn-edit-cars:hover {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #499a4c;
+    text-decoration: none;
+}
+
+.card-container .card .card-body .btn-delete-cars {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+    width: 143.5px;
+    height: 48px;
+    border-radius: 2px;
+    color: #fa2c5a;
+    background: #ffffff;
+    border: 1px solid #fa2c5a;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.card-container .card .card-body .btn-delete-cars:hover {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+    width: 143.5px;
+    height: 48px;
+    border-radius: 2px;
+    color: #ffffff;
+    background: #fa2c5a;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+/* buton styles */
+.btn {
+    border-radius: 2px !important;
+}
+
+.btn-add-car {
+    background-color: var(--color-primary) !important;
+    color: var(--white-color) !important;
+    font-weight: 500 !important;
+}
+
+.btn-add-car:hover {
+    background-color: #cfd4ed !important;
+    border: 1px solid var(--color-primary) !important;
+    color: var(--color-primary) !important;
+    font-weight: 500;
+}
+
+.btn-filter-size {
+    color: #aeb7e1;
+    border-color: #aeb7e1;
+}
+
+.btn-filter-size:hover {
+    color: #0d28a6 !important;
+    border-color: #0d28a6 !important;
+    background-color: #cfd4ed !important;
+}
+
+.form-container {
+    background-color: var(--white-color);
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    border-radius: 2px !important;
 }
