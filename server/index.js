@@ -9,7 +9,7 @@ const { Cars, Car_Types } = require('./models');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Crete Car
+// Create Car
 app.post('/api/v1/cars', (req, res) => {
     const body = req.body;
 
