@@ -42,9 +42,9 @@
 
                         <div class="d-flex flex-row align-content-center">
                             <!-- searchbox -->
-                            <form class="d-flex search-box" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            <form class="d-flex search-box m-3" role="search" action="/search">
+                                <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+                                <button class="btn btn-outline-success btn-search" type="submit">Search</button>
                             </form>
 
                             <!-- user -->
@@ -137,16 +137,16 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="d-flex justify-content-between">
-                                                <a href="/delete-car/<%=cars[i].id%>">
+                                                <!-- <a href="/delete-car/<%=cars[i].id%>">
                                                     <button class="btn btn-delete-cars">
                                                         <i class="bi bi-trash3 me-1"></i>
                                                         Delete
                                                     </a>
-                                                </button>
-                                                <!-- <button onclick="confirmDelete('<%= cars[i].id%>')" class="btn btn-delete-cars">
+                                                </button> -->
+                                                <button onclick="confirmDelete('<%= cars[i].id%>')" class="btn btn-delete-cars">
                                                     <i class="bi bi-trash3 me-1"></i>
                                                     Delete
-                                                </button> -->
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -166,8 +166,12 @@
                 </div>
             </div>
         </div>
-        <!-- end of sidebar  -->
 
+        <!-- sweet alert 2 cdn -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="./scripts/confirmDelete.js"></script>
+        <script src="./scripts/activeFilter.js"></script>
         <!-- bootstrap js -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>

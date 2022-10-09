@@ -214,9 +214,15 @@ body {
     font-weight: 500;
 }
 
+.btn-search {
+    color: #0d28a6 !important;
+    border-color: #0d28a6 !important;
+    background-color: #fff !important;
+}
+
 .btn-filter-size {
-    color: #aeb7e1;
-    border-color: #aeb7e1;
+    color: #aeb7e1 !important;
+    border-color: #aeb7e1 !important;
 }
 
 .btn-filter-size:hover {
@@ -233,4 +239,10 @@ body {
 .form-select,
 .input-group-text {
     border-radius: 2px !important;
+}
+
+.active-filter {
+    color: #0d28a6 !important;
+    border-color: #0d28a6 !important;
+    background-color: #cfd4ed !important;
 }
