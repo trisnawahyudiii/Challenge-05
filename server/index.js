@@ -45,6 +45,20 @@ app.get('/api/v1/cars/:id', async (req, res) => {
     }
 });
 
+// get car by type
+app.get('/api/v1/cars/type/:id', async (req, res) => {
+    try {
+        const type_id = req.params.id;
+        const cars = await Cars.findAll({
+            where: { car_type: type_id },
+            include: [{ model: Car_Types, as: 'type' }],
+        });
+        res.status(200).json(cars);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Update Car
 app.put('/api/v1/cars/:id', (req, res) => {
     const id = req.params.id;

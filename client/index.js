@@ -99,6 +99,19 @@ app.post('/update-car/:id', cloudStorage.single('car_image'), (req, res) => {
     });
 });
 
+// filter car by type
+app.get('/:id', (req, res) => {
+    const type_id = req.params.id;
+    axios
+        .get(`http://localhost:5000/api/v1/cars/type/${type_id}`)
+        .then((response) => {
+            res.render('index', { cars: response.data, moment: moment });
+        })
+        .catch((error) => {
+            res.status(500).json({ error: error.message });
+        });
+});
+
 app.get('/delete-car/:id', async (req, res) => {
     try {
         const id = req.params.id;
